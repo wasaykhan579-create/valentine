@@ -1,107 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Will You Be My Valentine?</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
 
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            width: 320px;
-        }
+    .card {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
 
-        img {
-            width: 180px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-        }
+    h1 {
+        color: #ff4d6d;
+    }
 
-        h1 {
-            color: #ff4d6d;
-        }
+    p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
 
-        p {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
+    button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 30px;
+        background: #ff4d6d;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
 
-        .buttons {
-            position: relative;
-            height: 50px;
-        }
+    .hidden {
+        display: none;
+    }
 
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+    .options {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
 
-        #yes {
-            background: #ff4d6d;
-            color: white;
-        }
+    .no {
+        background: #ccc;
+        color: black;
+    }
 
-        #no {
-            background: #ccc;
-            position: absolute;
-        }
-    </style>
+    .error {
+        color: red;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+</style>
 </head>
+
 <body>
 
-<div class="card">
-    <img src="https://i.imgur.com/3XQG5YH.png" alt="Love">
-    <h1>Hey Love 💖</h1>
-    <p>Every day feels better with you in it.<br>
-       So… will you be my Valentine? 🌹</p>
+<!-- PAGE 1 -->
+<div class="card" id="page1">
+    <h1>Hey My Love 💖</h1>
+    <p>
+        From the moment you came into my life, everything started to feel warmer and brighter.<br><br>
+        You are not just someone I love, you are someone who understands me, supports me, and makes me feel safe being myself.<br><br>
+        Every smile of yours stays with me longer than you think, and every word you say matters more than you know.<br><br>
+        You are my comfort on hard days, my happiness on good ones, and my favorite thought every single night.<br><br>
+        In a world full of chaos, you are my calm, my peace, and my home.<br><br>
+        And I just want you to know… you mean everything to me. Always.
+    </p>
+    <button onclick="goToPage2()">Proceed 💌</button>
+</div>
 
-    <div class="buttons">
-        <button id="yes" onclick="yesClicked()">Yes 💕</button>
-        <button id="no" onmouseover="moveNo()">No 🙄</button>
+<!-- PAGE 2 -->
+<div class="card hidden" id="page2">
+    <h1>One Question… 💭</h1>
+    <p>I wanted to ask you this…<br><br><strong>Will you be my Valentine?</strong></p>
+
+    <div class="options">
+        <button onclick="yesClicked()">Yes ❤️</button>
+        <button class="no" onclick="noClicked()">No 😶</button>
     </div>
+
+    <div class="error hidden" id="errorMsg">Error: Please try again ❌</div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="card hidden" id="page3">
+    <h1>I LOVE YOU ❤️</h1>
+    <p style="font-size:20px;">
+        In this world<br>
+        and after.
+    </p>
 </div>
 
 <script>
-    function yesClicked() {
-        document.body.innerHTML = `
-            <div style="
-                display:flex;
-                justify-content:center;
-                align-items:center;
-                height:100vh;
-                background:#ff9a9e;
-                font-family:Poppins;
-                text-align:center;
-            ">
-                <h1 style="color:white;">
-                    YAYYY!! 😍💘<br><br>
-                    I knew you’d say yes 🥹<br>
-                    Happy Valentine’s Day 💐
-                </h1>
-            </div>
-        `;
+    function goToPage2() {
+        document.getElementById("page1").classList.add("hidden");
+        document.getElementById("page2").classList.remove("hidden");
     }
 
-    function moveNo() {
-        const noBtn = document.getElementById("no");
-        const x = Math.random() * 200 - 100;
-        const y = Math.random() * 100 - 50;
-        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    function noClicked() {
+        document.getElementById("errorMsg").classList.remove("hidden");
+    }
+
+    function yesClicked() {
+        document.getElementById("page2").classList.add("hidden");
+        document.getElementById("page3").classList.remove("hidden");
     }
 </script>
 
